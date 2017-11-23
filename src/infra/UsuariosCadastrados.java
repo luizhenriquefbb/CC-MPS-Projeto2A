@@ -98,10 +98,10 @@ public class UsuariosCadastrados {
             // atualizar
             this.addUsuarios(novoUsuario);
             
+        }else{
+            // caso nao exista: informa um ero
+            throw new EntidadeNaoPodeSerAtualizadaException("Usuario não existe");
         }
-        // caso nao exista: informa um ero
-        throw new EntidadeNaoPodeSerAtualizadaException("Usuario não existe");
-        
     }
 
     /**

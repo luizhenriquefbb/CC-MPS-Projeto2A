@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import util.exceptions.HashMapInvalidoException;
 import util.Strings;
 import view.Fachada;
-import view.FachadaCliente;
+import view.FachadaGerente;
 
 /**
  *
@@ -246,7 +246,7 @@ public class PainelDeCadastro extends PainelDeAcoesAbstrato {
         this.entrada.put(Strings.KEY_USUARIO_LOGIN, login);
         this.entrada.put(Strings.KEY_USUARIO_NASCIMENTO, new Date(ano, mes-1, dia));
 
-        fachada = new FachadaCliente(this.entrada);
+        fachada = new FachadaGerente(this.entrada);
 
         try {
             fachada.agir();

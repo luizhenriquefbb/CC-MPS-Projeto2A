@@ -3,7 +3,7 @@ package view;
 import Business.BuscarProduto;
 import Business.CadastrarProduto;
 import Business.CadastrarUsuario;
-import Business.editarPerfil;
+import Business.EditarPerfil;
 import Business.GerarRelatorio;
 import Business.RelatorioDeClientesAtivos;
 import Business.RelatorioDeProdutos;
@@ -57,7 +57,7 @@ public class FachadaGerente extends Fachada{
         listaAcoes.put(Strings.ACAO_GERAR_RELATORIO_PRODUTOS, new GerarRelatorio(new RelatorioDeProdutos()));
         listaAcoes.put(Strings.ACAO_GERAR_RELATORIO_CLIENTES_ATIVOS, new GerarRelatorio(new RelatorioDeClientesAtivos()));
         listaAcoes.put(Strings.ACAO_CADASTRAR_USUARIO, new CadastrarUsuario((HashMap<String, Object>) entrada));
-        listaAcoes.put(Strings.ACAO_EDITAR_PERFIL, new editarPerfil((HashMap<String, Object>) entrada));
+        listaAcoes.put(Strings.ACAO_EDITAR_PERFIL, new EditarPerfil((HashMap<String, Object>) entrada));
     }
     
     

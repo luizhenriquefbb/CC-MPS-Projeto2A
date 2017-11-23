@@ -5,14 +5,13 @@
  */
 package gui;
 
-import java.util.Date;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import util.exceptions.HashMapInvalidoException;
 import util.Strings;
-import view.FachadaCliente;
+import view.Fachada;
 import view.FachadaGerente;
 
 /**
@@ -26,7 +25,7 @@ public class PainelNovoProduto extends PainelDeAcoesAbstrato {
      * @param entrada
      * @param fachada
      */
-    public PainelNovoProduto(Map<String, Object> entrada, FachadaCliente fachada) {
+    public PainelNovoProduto(Map<String, Object> entrada, Fachada fachada) {
         super(entrada, fachada);
         initComponents();
         setVisible(true);
@@ -144,17 +143,25 @@ public class PainelNovoProduto extends PainelDeAcoesAbstrato {
     private void jToggleButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonOKActionPerformed
         String nome = jTextNome.getText();
         String codigo = jtextCodigo.getText();
-        Double preco = Double.parseDouble(jTextPreco.getText());
+        Double preco;
+        while(true){
+            try{
+                preco = Double.parseDouble(jTextPreco.getText());
+                break;
+            }catch (NumberFormatException ex){
+                jTextPreco.setText(JOptionPane.showInputDialog(null, "Número do preço no formato errado\n"
+                        + "Tente novamente"));
+            }
+        }
 
-        this.entrada.put(Strings.KEY_USUARIO_NOME, nome);
-        this.entrada.put(Strings.KEY_USUARIO_SENHA, preco);
-        this.entrada.put(Strings.KEY_USUARIO_LOGIN, codigo);
+        this.entrada.put(Strings.KEY_PRODUTO_NOME, nome);
+        this.entrada.put(Strings.KEY_PRODUTO_PRECO, preco);
+        this.entrada.put(Strings.KEY_PRODUTO_CODIGO, codigo);
 
         fachada = new FachadaGerente(this.entrada);
 
         try {
             fachada.agir();
-            JOptionPane.showMessageDialog(null, "relatorio salvo em "+Strings.DIRETORIO_PRODUTOS_CADASTRADOS);
             pai.dispose();
         } catch (HashMapInvalidoException ex) {
             Logger.getLogger(Gerente.class.getName()).log(Level.SEVERE, null, ex);

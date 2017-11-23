@@ -5,6 +5,7 @@
  */
 package view;
 
+import Business.Memento;
 import infra.Produto;
 import java.util.Date;
 import java.util.HashMap;
@@ -45,7 +46,7 @@ public class FachadaGerenteTest {
     /**
      * Antes dos métodos
      */
-    @Before
+  @Before
     public void setUp() {
         entrada = new HashMap<>();
         fachada = null;
@@ -186,9 +187,23 @@ public class FachadaGerenteTest {
         
         String codigoProdutoBuscado = "codigo1";
         
+        //cadastrar o produto que vou procurar
+        entrada.put(Strings.ENTRADA_ACAO, Strings.ACAO_CADASTRAR_PRODUTO);
+        entrada.put(Strings.KEY_PRODUTO_NOME, "Produto2");         
+        entrada.put(Strings.KEY_PRODUTO_CODIGO, codigoProdutoBuscado);
+        entrada.put(Strings.KEY_PRODUTO_PRECO, 2.50);
+        
+        fachada = new FachadaGerente(entrada);
+        
+        try {
+            fachada.agir();
+        } catch (HashMapInvalidoException ex) {
+            Logger.getLogger(FachadaGerenteTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //buscar o produto
         entrada.put(Strings.ENTRADA_ACAO, Strings.ACAO_BUSCAR_PRODUTO);
         entrada.put(Strings.KEY_PRODUTO_CODIGO, codigoProdutoBuscado);
-        
         fachada = new FachadaGerente(entrada);
         
         try {
@@ -401,6 +416,15 @@ public class FachadaGerenteTest {
             System.out.println("Sucesso: Erro esperado");
             
         }
+    }
+    
+    @Test
+    public void testarMemento(){
+                
+        Memento memento = new Memento();
+        
+        
+
     }
     
    

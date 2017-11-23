@@ -35,11 +35,12 @@ public class Strings {
     public static final String ENTRADA_ACAO                             = "acao";
 
     //diretorios
-    public static final String DIRETORIO_RAIZ                           = "persistencia"+(File.pathSeparatorChar);
+    public static final String DIRETORIO_RAIZ                           = "persistencia"+(File.separator);
            
     
     public static final String DIRETORIO_USUARIOS_CADASTRADOS           = DIRETORIO_RAIZ+"usuarios.object";
     public static final String DIRETORIO_RELATORIO_CLIENTES             = DIRETORIO_RAIZ+"relatorio_usuarios.txt";
+    public static final String DIRETORIO_RELATORIO_PRODUTOS             = DIRETORIO_RAIZ+"relatorio_produtos.txt";
     public static final String DIRETORIO_PRODUTOS_CADASTRADOS           = DIRETORIO_RAIZ+"produtos.object";
 
 

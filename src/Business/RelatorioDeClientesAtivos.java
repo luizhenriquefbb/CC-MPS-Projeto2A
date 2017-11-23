@@ -34,7 +34,7 @@ public class RelatorioDeClientesAtivos extends TemplateRelatorio {
     @Override
     protected void salvarRelatorio() {
         FileManager fileManager = FileManager.getFileMager();
-        fileManager.saveFile(Strings.DIRETORIO_USUARIOS_CADASTRADOS, this.gerarRelatorio());
+        fileManager.saveFile(Strings.DIRETORIO_RELATORIO_CLIENTES, this.gerarRelatorio());
     }
     
 }

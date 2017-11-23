@@ -38,13 +38,16 @@ public class Usuario extends Entidade implements Serializable{
 
     public Usuario() {
     }
-    
-    
 
     @Override
     public String toString() {
-        return "Usuario{" + "nome=" + nome + ", nascimento=" + nascimento + ", cpf=" + cpf + ", lugaresFavoritos=" + lugaresFavoritos + '}';
+        return "Usuario{" + "nome=" + nome + ", nascimento=" + nascimento + ", cpf=" + cpf +
+                ", login=" + login + ", senha=" + senha + ", lugaresFavoritos=" + lugaresFavoritos + '}';
     }
+    
+    
+
+    
 
     public String getNome() {
         return nome;

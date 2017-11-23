@@ -33,7 +33,7 @@ public class RelatorioDeProdutos extends TemplateRelatorio{
     @Override
     protected void salvarRelatorio() {
         FileManager fileManager = FileManager.getFileMager();
-        fileManager.saveFile(Strings.DIRETORIO_PRODUTOS_CADASTRADOS, this.gerarRelatorio());
+        fileManager.saveFile(Strings.DIRETORIO_RELATORIO_PRODUTOS, this.gerarRelatorio());
     }
     
 }

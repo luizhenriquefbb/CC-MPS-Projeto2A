@@ -1,8 +1,10 @@
 package gui;
 
 
+import Business.EditarPerfil;
 import Business.Memento;
 import infra.Produto;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -11,7 +13,6 @@ import javax.swing.JOptionPane;
 import util.exceptions.HashMapInvalidoException;
 import util.Strings;
 import view.Fachada;
-import view.FachadaCliente;
 import view.FachadaGerente;
 
 /*
@@ -53,6 +54,7 @@ public class Gerente extends javax.swing.JFrame {
         botaoCadastrarProduto = new javax.swing.JToggleButton();
         botaoRelatorioProdutos = new javax.swing.JToggleButton();
         botaoBuscarProduto = new javax.swing.JToggleButton();
+        botaoDesfazerEditarPerfil = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -100,6 +102,13 @@ public class Gerente extends javax.swing.JFrame {
             }
         });
 
+        botaoDesfazerEditarPerfil.setText("DesfazerEditarPerfil");
+        botaoDesfazerEditarPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoDesfazerEditarPerfilActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -114,7 +123,10 @@ public class Gerente extends javax.swing.JFrame {
                     .addComponent(botaoEditarPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoCadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoRelatorioClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoRelatorioProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botaoRelatorioProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(166, 166, 166)
+                        .addComponent(botaoDesfazerEditarPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -132,7 +144,10 @@ public class Gerente extends javax.swing.JFrame {
                         .addComponent(botaoRelatorioClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
                         .addComponent(botaoRelatorioProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(botaoBuscarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(botaoBuscarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botaoDesfazerEditarPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(72, Short.MAX_VALUE))
         );
 
@@ -158,13 +173,13 @@ public class Gerente extends javax.swing.JFrame {
     private void botaoCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarClienteActionPerformed
         this.entrada.put(Strings.ENTRADA_ACAO, Strings.ACAO_CADASTRAR_USUARIO);
 
-        FrameDeAcoes FrameDeAcoes = new FrameDeAcoes(this, new PainelDeCadastro(entrada, (FachadaCliente) fachada));
+        FrameDeAcoes FrameDeAcoes = new FrameDeAcoes(this, new PainelDeCadastro(entrada, fachada));
 
     }//GEN-LAST:event_botaoCadastrarClienteActionPerformed
 
     private void botaoEditarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditarPerfilActionPerformed
         this.entrada.put(Strings.ENTRADA_ACAO, Strings.ACAO_EDITAR_PERFIL);
-        FrameDeAcoes FrameDeAcoes = new FrameDeAcoes(this, new PainelDeEditarPerfil(entrada, (FachadaCliente) fachada, memento));
+        FrameDeAcoes FrameDeAcoes = new FrameDeAcoes(this, new PainelDeEditarPerfil(entrada,fachada, memento));
     }//GEN-LAST:event_botaoEditarPerfilActionPerformed
 
     private void botaoCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarProdutoActionPerformed
@@ -172,7 +187,7 @@ public class Gerente extends javax.swing.JFrame {
         this.entrada.put(Strings.ENTRADA_ACAO, Strings.ACAO_CADASTRAR_PRODUTO);
         this.fachada = new FachadaGerente(entrada);
         
-        FrameDeAcoes FrameDeAcoes = new FrameDeAcoes(this, new PainelNovoProduto(entrada, (FachadaCliente) fachada));
+        FrameDeAcoes FrameDeAcoes = new FrameDeAcoes(this, new PainelNovoProduto(entrada,fachada));
         
 
         
@@ -185,7 +200,7 @@ public class Gerente extends javax.swing.JFrame {
         
         try {
             this.fachada.agir();
-            JOptionPane.showMessageDialog(null, "relatorio salvo em "+Strings.DIRETORIO_PRODUTOS_CADASTRADOS);
+            JOptionPane.showMessageDialog(null, "relatorio salvo em "+Strings.DIRETORIO_RELATORIO_PRODUTOS);
         } catch (HashMapInvalidoException ex) {
             Logger.getLogger(Gerente.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex.getLocalizedMessage());
@@ -224,6 +239,41 @@ public class Gerente extends javax.swing.JFrame {
                     + produtoAchado.toString());
         }
     }//GEN-LAST:event_botaoBuscarProdutoActionPerformed
+
+    private void botaoDesfazerEditarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDesfazerEditarPerfilActionPerformed
+        
+        EditarPerfil estado = (EditarPerfil) memento.getEstado();
+        memento.setEstado(null);
+        
+        System.out.println("desfazendo operação");
+        
+        this.entrada.put(Strings.ENTRADA_ACAO, Strings.ACAO_EDITAR_PERFIL);
+        
+        // camopos recuperados
+        String nome =  (String) estado.getMap().get(Strings.KEY_USUARIO_NOME);
+        String login = (String) estado.getMap().get(Strings.KEY_USUARIO_LOGIN);
+        String cpf = (String) estado.getMap().get(Strings.KEY_USUARIO_CPF);
+        String senha = (String) estado.getMap().get(Strings.KEY_USUARIO_SENHA);
+
+        Date nascimento = (Date) (estado.getMap().get(Strings.KEY_USUARIO_NASCIMENTO));
+        
+        this.entrada.put(Strings.KEY_USUARIO_NOME, nome);
+        this.entrada.put(Strings.KEY_USUARIO_SENHA, senha);
+        this.entrada.put(Strings.KEY_USUARIO_CPF, cpf);
+        this.entrada.put(Strings.KEY_USUARIO_LOGIN, login);
+        this.entrada.put(Strings.KEY_USUARIO_NASCIMENTO, nascimento);
+
+        fachada = new FachadaGerente(this.entrada);
+
+        try {
+            fachada.agir();
+        } catch (HashMapInvalidoException ex) {
+            Logger.getLogger(Gerente.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        
+        
+    }//GEN-LAST:event_botaoDesfazerEditarPerfilActionPerformed
 
     /**
      * @param args the command line arguments
@@ -267,6 +317,7 @@ public class Gerente extends javax.swing.JFrame {
     private javax.swing.JToggleButton botaoBuscarProduto;
     private javax.swing.JToggleButton botaoCadastrarCliente;
     private javax.swing.JToggleButton botaoCadastrarProduto;
+    private javax.swing.JToggleButton botaoDesfazerEditarPerfil;
     private javax.swing.JButton botaoEditarPerfil;
     private javax.swing.JToggleButton botaoRelatorioClientes;
     private javax.swing.JToggleButton botaoRelatorioProdutos;

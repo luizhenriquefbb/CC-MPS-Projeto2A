@@ -13,7 +13,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import util.exceptions.HashMapInvalidoException;
 import util.Strings;
-import view.FachadaCliente;
+import view.Fachada;
+import view.FachadaGerente;
 
 /**
  *
@@ -24,7 +25,7 @@ public class PainelDeEditarPerfil extends PainelDeAcoesAbstrato {
     private Memento memento;
     
 
-    PainelDeEditarPerfil(Map<String, Object> entrada, FachadaCliente fachada, Memento memento) {
+    PainelDeEditarPerfil(Map<String, Object> entrada, Fachada fachada, Memento memento) {
         super(entrada, fachada);
         this.memento = memento;
         initComponents();
@@ -218,6 +219,7 @@ public class PainelDeEditarPerfil extends PainelDeAcoesAbstrato {
 
     private void jToggleButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonOKActionPerformed
         
+        // novos atributos
         String nome = jTextNome.getText();
         String login = jtextLogin.getText();
         String cpf = jTextCPF.getText();
@@ -233,11 +235,11 @@ public class PainelDeEditarPerfil extends PainelDeAcoesAbstrato {
         this.entrada.put(Strings.KEY_USUARIO_LOGIN, login);
         this.entrada.put(Strings.KEY_USUARIO_NASCIMENTO, new Date(ano, mes-1, dia));
 
-        fachada = new FachadaCliente(this.entrada);
+        fachada = new FachadaGerente(this.entrada);
 
         try {
-            this.memento.setEstado(fachada.getAcao());
             fachada.agir();
+            this.memento.setEstado(fachada.getAcao());
             pai.dispose();
         } catch (HashMapInvalidoException ex) {
             Logger.getLogger(Gerente.class.getName()).log(Level.SEVERE, null, ex);
