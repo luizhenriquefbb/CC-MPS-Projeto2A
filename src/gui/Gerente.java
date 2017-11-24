@@ -19,7 +19,7 @@ import view.Adaptador;
 
 
 /**
- *
+ * Classe principal gerente da aplicação. Ele tem total acesso a todas as funcionalidades do sistema
  * @author lhfba
  */
 public class Gerente extends javax.swing.JFrame {
