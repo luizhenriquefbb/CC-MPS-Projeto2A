@@ -1,12 +1,12 @@
 package view;
 
-import Business.BuscarProduto;
-import Business.CadastrarProduto;
-import Business.CadastrarUsuario;
-import Business.EditarPerfil;
-import Business.GerarRelatorio;
-import Business.RelatorioDeClientesAtivos;
-import Business.RelatorioDeProdutos;
+import business.BuscarProduto;
+import business.CadastrarProduto;
+import business.CadastrarUsuario;
+import business.EditarPerfil;
+import business.GerarRelatorio;
+import business.RelatorioDeClientesAtivos;
+import business.RelatorioDeProdutos;
 import java.util.HashMap;
 import java.util.Map;
 import util.exceptions.HashMapInvalidoException;

@@ -5,6 +5,7 @@
  */
 package Business;
 
+import business.Fabrica;
 import infra.Entidade;
 import java.util.Date;
 import java.util.HashMap;

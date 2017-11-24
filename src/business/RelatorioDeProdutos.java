@@ -1,4 +1,4 @@
-package Business;
+package business;
 
 import infra.Produto;
 import infra.ProdutosCadastrados;

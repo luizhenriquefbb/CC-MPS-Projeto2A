@@ -5,6 +5,7 @@
  */
 package Business;
 
+import business.Fabrica;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

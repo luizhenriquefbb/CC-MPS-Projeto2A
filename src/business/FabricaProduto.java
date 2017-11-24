@@ -1,5 +1,5 @@
 
-package Business;
+package business;
 
 import infra.Entidade;
 import infra.Produto;

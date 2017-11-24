@@ -1,4 +1,4 @@
-package Business;
+package business;
 
 import infra.Usuario;
 import java.util.HashMap;

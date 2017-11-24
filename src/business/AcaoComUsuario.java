@@ -1,4 +1,4 @@
-package Business;
+package business;
 
 import infra.UsuariosCadastrados;
 import util.exceptions.HashMapInvalidoException;

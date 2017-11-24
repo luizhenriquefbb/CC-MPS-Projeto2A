@@ -1,6 +1,6 @@
 package view;
 
-import Business.Fabrica;
+import business.Fabrica;
 import infra.Entidade;
 import util.exceptions.HashMapInvalidoException;
 

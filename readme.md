@@ -5,9 +5,14 @@
 	Aline moura araújo
 
 ## Objetivos:
-	Implementar X padrões de projetos
-	são eles: Fábrica, memento, fachada, command e Template
+	Implementar 5 padrões de projetos
+	são eles: Fábrica, memento, fachada, adapter e Template
 
 ## Padrões extras implementados:
 	- Singleton
-	- adapter
+	- command
+
+
+## Documentação
+	- [Aproximação do diagrama de classes](https://drive.google.com/file/d/1NZcMT1Q_rGt9TIhtXHmOYho2OX6QkZi5/view?usp=sharing) 
+	TODO: Colocar documentação quando terminda
