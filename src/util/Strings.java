@@ -24,7 +24,8 @@ public class Strings {
     //acoes
     public static final String ACAO_GERAR_RELATORIO_PRODUTOS		= "gerarRelatorioProdutos";
     public static final String ACAO_GERAR_RELATORIO_CLIENTES_ATIVOS	= "gerarRelatorioClientesAtivos";
-    public static final String ACAO_GERAR_LINK_DE_PRODUTO		= "gerarLinkDeProduto";
+    public static final String ACAO_GERAR_LINK_DE_PRODUTO_A		= "gerarLinkDeProdutoA";
+    public static final String ACAO_GERAR_LINK_DE_PRODUTO_B		= "gerarLinkDeProdutoB";
     public static final String ACAO_BUSCAR_PRODUTO			= "buscarProduto";
     public static final String ACAO_CADASTRAR_PRODUTO			= "cadastrarProduto";
     public static final String ACAO_CADASTRAR_USUARIO                   = "cadastrarUsuario";

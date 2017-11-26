@@ -1,4 +1,4 @@
-# Projeto 2A - MPS
+# Projeto - MPS
 
 Projeto realizado para cadeira de MPS do curso de Ciência da Computação.
 
@@ -8,12 +8,17 @@ A aplicação pouco importa, o que realmente interessa é a correta implementaç
 	Luiz Henrique Freire Barros
 	Aline moura araújo
 
-## Objetivos:
+## Objetivo da primeira parte:
 	Implementar 5 padrões de projetos
 	são eles: Fábrica, memento, fachada, adapter, command e Template
 
-## Padrões extras implementados:
+## Objetivos da seguda parte:
+    Implementar mais 4 padrões de projeto a escolha do aluno
+    
+    Padrões escolhidos
 	- Singleton
+	- Proxy
+	- Strategy
 
 
 ## Documentação

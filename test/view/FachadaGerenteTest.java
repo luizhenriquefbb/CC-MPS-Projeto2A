@@ -228,10 +228,8 @@ public class FachadaGerenteTest {
         
         
         // exemplo que funciona
-        entrada.put(Strings.ENTRADA_ACAO, Strings.ACAO_GERAR_LINK_DE_PRODUTO);
-        entrada.put(Strings.KEY_PRODUTO_NOME, "Produto1");         
+        entrada.put(Strings.ENTRADA_ACAO, Strings.ACAO_GERAR_LINK_DE_PRODUTO_A);
         entrada.put(Strings.KEY_PRODUTO_CODIGO, "codigo1");
-        entrada.put(Strings.KEY_PRODUTO_PRECO, 2.50);
         
         fachada = new FachadaGerente(entrada);
         

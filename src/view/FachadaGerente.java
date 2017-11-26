@@ -4,6 +4,8 @@ import business.BuscarProduto;
 import business.CadastrarProduto;
 import business.CadastrarUsuario;
 import business.EditarPerfil;
+import business.GerarLinkDoProdutoEstrategiaA;
+import business.GerarLinkDoProdutoEstrategiaB;
 import business.GerarRelatorio;
 import business.RelatorioDeClientesAtivos;
 import business.RelatorioDeProdutos;
@@ -53,7 +55,8 @@ public class FachadaGerente extends Fachada{
     private void construirHashDeAcoes(){
         listaAcoes.put(Strings.ACAO_BUSCAR_PRODUTO, new BuscarProduto((HashMap<String, Object>) entrada));
         listaAcoes.put(Strings.ACAO_CADASTRAR_PRODUTO,new CadastrarProduto((HashMap<String, Object>) entrada));
-        listaAcoes.put(Strings.ACAO_GERAR_LINK_DE_PRODUTO,new CadastrarProduto((HashMap<String, Object>) entrada));
+        listaAcoes.put(Strings.ACAO_GERAR_LINK_DE_PRODUTO_A,new GerarLinkDoProdutoEstrategiaA((HashMap<String, Object>) entrada));
+        listaAcoes.put(Strings.ACAO_GERAR_LINK_DE_PRODUTO_B,new GerarLinkDoProdutoEstrategiaB((HashMap<String, Object>) entrada));
         listaAcoes.put(Strings.ACAO_GERAR_RELATORIO_PRODUTOS, new GerarRelatorio(new RelatorioDeProdutos()));
         listaAcoes.put(Strings.ACAO_GERAR_RELATORIO_CLIENTES_ATIVOS, new GerarRelatorio(new RelatorioDeClientesAtivos()));
         listaAcoes.put(Strings.ACAO_CADASTRAR_USUARIO, new CadastrarUsuario((HashMap<String, Object>) entrada));

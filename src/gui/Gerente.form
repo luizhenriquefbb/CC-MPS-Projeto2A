@@ -26,24 +26,27 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="botaoCadastrarCliente" min="-2" pref="160" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="botaoBuscarProduto" min="-2" pref="160" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="botaoGerarLinkDoProduto" min="-2" pref="160" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="botaoCadastrarCliente" min="-2" pref="160" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="botaoBuscarProduto" min="-2" pref="160" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="botaoEditarPerfil" min="-2" pref="160" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="botaoCadastrarProduto" min="-2" pref="160" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="botaoRelatorioProdutos" min="-2" pref="160" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="166" pref="166" max="-2" attributes="0"/>
+                          <Component id="botaoDesfazerEditarPerfil" min="-2" pref="160" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="botaoRelatorioClientes" alignment="0" max="32767" attributes="0"/>
+                      <Component id="botaoRelatorioDeClientesAdaptado" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="botaoEditarPerfil" min="-2" pref="160" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Component id="botaoCadastrarProduto" min="-2" pref="160" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="botaoRelatorioProdutos" min="-2" pref="160" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="166" pref="166" max="-2" attributes="0"/>
-                      <Component id="botaoDesfazerEditarPerfil" min="-2" pref="160" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="botaoRelatorioClientes" alignment="0" max="32767" attributes="0"/>
-                  <Component id="botaoRelatorioDeClientesAdaptado" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="42" max="32767" attributes="0"/>
           </Group>
@@ -70,7 +73,9 @@
                       <Component id="botaoDesfazerEditarPerfil" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="botaoGerarLinkDoProduto" min="-2" pref="40" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               <Component id="botaoRelatorioClientes" min="-2" pref="40" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="botaoRelatorioDeClientesAdaptado" min="-2" pref="40" max="-2" attributes="0"/>
@@ -145,6 +150,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoRelatorioDeClientesAdaptadoActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JToggleButton" name="botaoGerarLinkDoProduto">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="GerarLinkDoProduto"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoGerarLinkDoProdutoActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
