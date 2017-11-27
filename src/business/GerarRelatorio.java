@@ -1,8 +1,6 @@
 
 package business;
 
-import util.FileManager;
-import util.Strings;
 import view.Acao;
 
 /**
@@ -19,7 +17,7 @@ public class GerarRelatorio extends Acao{
     
     
     @Override
-    public void __realizarAcao(){
+    protected void __realizarAcao(){
         System.out.println(relatorio.gerarRelatorio());
         
         relatorio.salvarRelatorio();

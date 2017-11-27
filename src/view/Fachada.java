@@ -1,6 +1,7 @@
 package view;
 
 import infra.Entidade;
+import util.exceptions.CredenciaisErradasException;
 import util.exceptions.HashMapInvalidoException;
 
 /**
@@ -9,7 +10,7 @@ import util.exceptions.HashMapInvalidoException;
  */
 public abstract class Fachada {
     
-    protected Acao acao;
+    protected Proxy acao;
     private Entidade entidade;
 
     public Entidade getEntidade() {
@@ -21,10 +22,11 @@ public abstract class Fachada {
     }
     
     
-    public abstract void agir() throws HashMapInvalidoException;
+    public abstract void agir() throws HashMapInvalidoException, CredenciaisErradasException;
 
     public Acao getAcao() {
-        return acao;
+        AcaoValidada acaoValidada = (AcaoValidada) this.acao;
+        return  acaoValidada.getAcao();
     }
 
     

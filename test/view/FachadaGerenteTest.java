@@ -6,6 +6,7 @@
 package view;
 
 import business.Memento;
+import gui.Gerente;
 import infra.Produto;
 import java.util.Date;
 import java.util.HashMap;
@@ -13,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import org.junit.Before;
@@ -20,6 +22,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import util.exceptions.HashMapInvalidoException;
 import util.Strings;
+import util.exceptions.CredenciaisErradasException;
 
 /**
  *
@@ -36,6 +39,8 @@ public class FachadaGerenteTest {
     
     @BeforeClass
     public static void setUpClass() {
+        Gerente.setLogin("admin");
+        Gerente.setSenha("123");
         
     }
     
@@ -65,7 +70,7 @@ public class FachadaGerenteTest {
         fachada = new FachadaGerente(entrada);
         try {
             fachada.agir();
-        } catch (HashMapInvalidoException ex) {
+        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
             Logger.getLogger(FachadaGerenteTest.class.getName()).log(Level.SEVERE, null, ex);
             fail("nao deveria dar erro");
         }
@@ -77,7 +82,7 @@ public class FachadaGerenteTest {
         try {
             fachada.agir();
             fail("deveria dar erro de acao");
-        } catch (HashMapInvalidoException ex) {
+        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
             System.out.println("sucesso, deu erro!");
             
         }
@@ -96,7 +101,7 @@ public class FachadaGerenteTest {
         
         try {
             fachada.agir();
-        } catch (HashMapInvalidoException ex) {
+        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
             Logger.getLogger(FachadaGerenteTest.class.getName()).log(Level.SEVERE, null, ex);
             fail("nao deveria dar erro");
         }
@@ -108,7 +113,7 @@ public class FachadaGerenteTest {
         try {
             fachada.agir();
             fail("deveria dar erro de acao");
-        } catch (HashMapInvalidoException ex) {
+        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
             System.out.println("sucesso, deu erro!");
         }
     }
@@ -130,7 +135,7 @@ public class FachadaGerenteTest {
         
         try {
             fachada.agir();
-        } catch (HashMapInvalidoException ex) {
+        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
             Logger.getLogger(FachadaGerenteTest.class.getName()).log(Level.SEVERE, null, ex);
             fail("nao deveria dar erro");
         }
@@ -146,7 +151,7 @@ public class FachadaGerenteTest {
         try {
             fachada.agir();
             fail("deveria dar erro");
-        } catch (HashMapInvalidoException ex) {
+        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
             System.out.println("sucesso, deu erro!");
         }
         
@@ -161,7 +166,7 @@ public class FachadaGerenteTest {
         try {
             fachada.agir();
             fail("deveria dar erro");
-        } catch (HashMapInvalidoException ex) {
+        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
             System.out.println("sucesso, deu erro!");
         }
         
@@ -176,7 +181,7 @@ public class FachadaGerenteTest {
         try {
             fachada.agir();
             fail("deveria dar erro");
-        } catch (HashMapInvalidoException ex) {
+        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
             System.out.println("sucesso, deu erro!");
         }
     }
@@ -197,7 +202,7 @@ public class FachadaGerenteTest {
         
         try {
             fachada.agir();
-        } catch (HashMapInvalidoException ex) {
+        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
             Logger.getLogger(FachadaGerenteTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -208,7 +213,7 @@ public class FachadaGerenteTest {
         
         try {
             fachada.agir();
-        } catch (HashMapInvalidoException ex) {
+        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
             Logger.getLogger(FachadaGerenteTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -235,7 +240,7 @@ public class FachadaGerenteTest {
         
         try {
             fachada.agir();
-        } catch (HashMapInvalidoException ex) {
+        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
             Logger.getLogger(FachadaGerenteTest.class.getName()).log(Level.SEVERE, null, ex);
             fail("nao deveria dar erro");
         }
@@ -252,7 +257,7 @@ public class FachadaGerenteTest {
         try {
             fachada.agir();
             fail("Deveria dar erro: sem o comando");
-        } catch (HashMapInvalidoException ex) {
+        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
             System.out.println("sucesso: erro esperado");
         }
         
@@ -268,7 +273,7 @@ public class FachadaGerenteTest {
         try {
             fachada.agir();
             fail("Deveria dar erro: Sem o codigo do produto");
-        } catch (HashMapInvalidoException ex) {
+        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
             System.out.println("sucesso: erro esperado");
         }
     }
@@ -290,7 +295,7 @@ public class FachadaGerenteTest {
         
         try {
             fachada.agir();
-        } catch (HashMapInvalidoException ex) {
+        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
             Logger.getLogger(FachadaGerenteTest.class.getName()).log(Level.SEVERE, null, ex);
             fail("nao deveria dar erro");
         }
@@ -310,7 +315,7 @@ public class FachadaGerenteTest {
         try {
             fachada.agir();
             fail("deveria dar erro: faltando CPF");
-        } catch (HashMapInvalidoException ex) {
+        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
             System.out.println("Sucesso: erro esperado");
             
         }
@@ -329,7 +334,7 @@ public class FachadaGerenteTest {
         try {
             fachada.agir();
             fail("deveria dar erro: faltando comando");
-        } catch (HashMapInvalidoException ex) {
+        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
             System.out.println("Sucesso: erro esperado");
             
         }
@@ -348,7 +353,7 @@ public class FachadaGerenteTest {
         try {
             fachada.agir();
             fail("deveria dar erro: comando errado");
-        } catch (HashMapInvalidoException ex) {
+        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
             System.out.println("Sucesso: erro esperado");
             
         }
@@ -370,7 +375,7 @@ public class FachadaGerenteTest {
         
         try {
             fachada.agir();
-        } catch (HashMapInvalidoException ex) {
+        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
             Logger.getLogger(FachadaGerenteTest.class.getName()).log(Level.SEVERE, null, ex);
             fail("Nao deveria dar erro");
         }
@@ -391,7 +396,7 @@ public class FachadaGerenteTest {
         try {
             fachada.agir();
             fail("deveria dar erro: sem CPF");
-        } catch (HashMapInvalidoException ex) {
+        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
             System.out.println("Sucesso: Erro esperado");
             
         }
@@ -410,21 +415,10 @@ public class FachadaGerenteTest {
         try {
             fachada.agir();
             fail("deveria dar erro: sem comando");
-        } catch (HashMapInvalidoException ex) {
+        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
             System.out.println("Sucesso: Erro esperado");
             
         }
     }
-    
-    @Test
-    public void testarMemento(){
-                
-        Memento memento = new Memento();
-        
-        
-
-    }
-    
    
-    
 }

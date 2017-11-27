@@ -1,4 +1,4 @@
-package view;
+ package view;
 
 import business.BuscarProduto;
 import business.CadastrarProduto;
@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 import util.exceptions.HashMapInvalidoException;
 import util.Strings;
+import util.exceptions.CredenciaisErradasException;
 
 /**
  * 
@@ -33,7 +34,7 @@ public class FachadaGerente extends Fachada{
     
     
     @Override
-    public void agir() throws HashMapInvalidoException{
+    public void agir() throws HashMapInvalidoException, CredenciaisErradasException{
         String entradaAcao = (String) this.entrada.get(Strings.ENTRADA_ACAO);
         
         // verifica se o comando está correto
@@ -41,7 +42,7 @@ public class FachadaGerente extends Fachada{
             throw new HashMapInvalidoException("acao nao definida");
         }
         
-        this.acao = this.listaAcoes.get(entradaAcao);
+        this.acao = new AcaoValidada((Acao) this.listaAcoes.get(entradaAcao));
         
         if(this.acao == null){
             throw new HashMapInvalidoException("comando não encontrado");
@@ -53,15 +54,15 @@ public class FachadaGerente extends Fachada{
     }
     
     private void construirHashDeAcoes(){
-        listaAcoes.put(Strings.ACAO_BUSCAR_PRODUTO, new BuscarProduto((HashMap<String, Object>) entrada));
-        listaAcoes.put(Strings.ACAO_CADASTRAR_PRODUTO,new CadastrarProduto((HashMap<String, Object>) entrada));
-        listaAcoes.put(Strings.ACAO_GERAR_LINK_DE_PRODUTO_A,new GerarLinkDoProdutoEstrategiaA((HashMap<String, Object>) entrada));
-        listaAcoes.put(Strings.ACAO_GERAR_LINK_DE_PRODUTO_B,new GerarLinkDoProdutoEstrategiaB((HashMap<String, Object>) entrada));
-        listaAcoes.put(Strings.ACAO_GERAR_RELATORIO_PRODUTOS, new GerarRelatorio(new RelatorioDeProdutos()));
-        listaAcoes.put(Strings.ACAO_GERAR_RELATORIO_CLIENTES_ATIVOS, new GerarRelatorio(new RelatorioDeClientesAtivos()));
-        listaAcoes.put(Strings.ACAO_CADASTRAR_USUARIO, new CadastrarUsuario((HashMap<String, Object>) entrada));
-        listaAcoes.put(Strings.ACAO_EDITAR_PERFIL, new EditarPerfil((HashMap<String, Object>) entrada));
+        listaAcoes.put(Strings.ACAO_BUSCAR_PRODUTO,                     new BuscarProduto((HashMap<String, Object>) entrada));
+        listaAcoes.put(Strings.ACAO_CADASTRAR_PRODUTO,                  new CadastrarProduto((HashMap<String, Object>) entrada));
+        listaAcoes.put(Strings.ACAO_GERAR_LINK_DE_PRODUTO_A,            new GerarLinkDoProdutoEstrategiaA((HashMap<String, Object>) entrada));
+        listaAcoes.put(Strings.ACAO_GERAR_LINK_DE_PRODUTO_B,            new GerarLinkDoProdutoEstrategiaB((HashMap<String, Object>) entrada));
+        listaAcoes.put(Strings.ACAO_GERAR_RELATORIO_PRODUTOS,           new GerarRelatorio(new RelatorioDeProdutos()));
+        listaAcoes.put(Strings.ACAO_GERAR_RELATORIO_CLIENTES_ATIVOS,    new GerarRelatorio(new RelatorioDeClientesAtivos()));
+        listaAcoes.put(Strings.ACAO_CADASTRAR_USUARIO,                  new CadastrarUsuario((HashMap<String, Object>) entrada));
+        listaAcoes.put(Strings.ACAO_EDITAR_PERFIL,                      new EditarPerfil((HashMap<String, Object>) entrada));
     }
-    
-    
+
+        
 }

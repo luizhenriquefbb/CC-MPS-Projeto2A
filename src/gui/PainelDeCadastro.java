@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import util.exceptions.HashMapInvalidoException;
 import util.Strings;
+import util.exceptions.CredenciaisErradasException;
 import view.Fachada;
 import view.FachadaGerente;
 
@@ -251,7 +252,7 @@ public class PainelDeCadastro extends PainelDeAcoesAbstrato {
         try {
             fachada.agir();
             pai.dispose();
-        } catch (HashMapInvalidoException ex) {
+        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
             Logger.getLogger(Gerente.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }

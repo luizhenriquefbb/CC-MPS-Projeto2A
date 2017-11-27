@@ -23,4 +23,5 @@ A aplicação pouco importa, o que realmente interessa é a correta implementaç
 
 ## Documentação
 	- [Aproximação do diagrama de classes](https://drive.google.com/file/d/1NZcMT1Q_rGt9TIhtXHmOYho2OX6QkZi5/view?usp=sharing)
-	TODO: Colocar documentação quando terminda
+	- [Padroes implementados](https://docs.google.com/document/d/1dhHwknbDX4uUXwOyA5goC7Ko5eyiwriv9GA6v2CodJQ/edit?usp=sharing)
+	- [Documento de requisitos](https://docs.google.com/document/d/1QD3sGFuXDfwpiaw0cX0CIo8JnXZFtd2B8MDuc_mVZ1g/edit?usp=sharing)
