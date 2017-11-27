@@ -4,6 +4,7 @@ package view;
 import java.util.HashMap;
 import java.util.Map;
 import org.json.JSONObject;
+import util.exceptions.CredenciaisErradasException;
 import util.exceptions.HashMapInvalidoException;
 
 /**
@@ -39,7 +40,7 @@ public class Adaptador extends FachadaGerente{
     }
 
     @Override
-    public void agir() throws HashMapInvalidoException{
+    public void agir() throws HashMapInvalidoException, CredenciaisErradasException{
         fachada.agir();
     }
     

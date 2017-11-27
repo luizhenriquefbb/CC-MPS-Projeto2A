@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import org.json.JSONObject;
 import util.exceptions.HashMapInvalidoException;
 import util.Strings;
+import util.exceptions.CredenciaisErradasException;
 import view.Adaptador;
 
 
@@ -27,6 +28,10 @@ public class Gerente extends javax.swing.JFrame {
     Fachada fachada;
     Map<String, Object> entrada = new HashMap<>();
     Memento memento;
+    
+    static String senha;
+    static String login;
+    
     
     public Gerente() {
         memento = new Memento();
@@ -176,7 +181,7 @@ public class Gerente extends javax.swing.JFrame {
         try {
             this.fachada.agir();
             JOptionPane.showMessageDialog(null, "relatorio salvo em "+Strings.DIRETORIO_RELATORIO_CLIENTES);
-        } catch (HashMapInvalidoException ex) {
+        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
             Logger.getLogger(Gerente.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex.getLocalizedMessage());
         }
@@ -216,7 +221,7 @@ public class Gerente extends javax.swing.JFrame {
         try {
             this.fachada.agir();
             JOptionPane.showMessageDialog(null, "relatorio salvo em "+Strings.DIRETORIO_RELATORIO_PRODUTOS);
-        } catch (HashMapInvalidoException ex) {
+        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
             Logger.getLogger(Gerente.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex.getLocalizedMessage());
         }
@@ -242,9 +247,9 @@ public class Gerente extends javax.swing.JFrame {
         
         try {
             this.fachada.agir();
-        } catch (HashMapInvalidoException ex) {
-            
+        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
             Logger.getLogger(Gerente.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
         Produto produtoAchado = (Produto) fachada.getEntidade();
         if (produtoAchado == null){
@@ -282,7 +287,7 @@ public class Gerente extends javax.swing.JFrame {
 
         try {
             fachada.agir();
-        } catch (HashMapInvalidoException ex) {
+        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
             Logger.getLogger(Gerente.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -301,7 +306,7 @@ public class Gerente extends javax.swing.JFrame {
         try {
             this.fachada.agir();
             JOptionPane.showMessageDialog(null, "relatorio salvo em "+Strings.DIRETORIO_RELATORIO_CLIENTES);
-        } catch (HashMapInvalidoException ex) {
+        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
             Logger.getLogger(Gerente.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex.getLocalizedMessage());
         }
@@ -322,7 +327,7 @@ public class Gerente extends javax.swing.JFrame {
         
         try {
             this.fachada.agir();
-        } catch (HashMapInvalidoException ex) {
+        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
             Logger.getLogger(Gerente.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex.getLocalizedMessage());
         }
@@ -330,7 +335,7 @@ public class Gerente extends javax.swing.JFrame {
 
     }//GEN-LAST:event_botaoGerarLinkDoProdutoActionPerformed
 
-    public static void main(String args[]) {
+    public static void main(String args[]){
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -357,6 +362,15 @@ public class Gerente extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         
+        // antes de criar a janela, fazer login:
+        login = JOptionPane.showInputDialog(null, "login (padrão: admin)");
+        senha = JOptionPane.showInputDialog(null, "senha (padrão: 123)");
+
+        if(    !("admin".equalsIgnoreCase(login) && "123".equals(senha))    ){
+            System.out.println("entrou com o login ou senha inválido");
+        }
+        else{
+        }
        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -376,4 +390,23 @@ public class Gerente extends javax.swing.JFrame {
     private javax.swing.JToggleButton botaoRelatorioDeClientesAdaptado;
     private javax.swing.JToggleButton botaoRelatorioProdutos;
     // End of variables declaration//GEN-END:variables
+
+    public static String getSenha() {
+        return senha;
+    }
+
+    public static String getLogin() {
+        return login;
+    }
+
+    public static void setSenha(String senha) {
+        Gerente.senha = senha;
+    }
+
+    public static void setLogin(String login) {
+        Gerente.login = login;
+    }
+
+    
+    
 }
