@@ -30,7 +30,7 @@ public class FileManagerTest {
     
     File file_map = new File("map_teste_salvamento.objeto");
     File file_usuario = new File("map_teste_salvamento.objeto");
-    
+        
     public FileManagerTest() {
     }
     
@@ -90,12 +90,19 @@ public class FileManagerTest {
     public void testarCarregarObjeto(){
         System.out.println("testando carregar Objeto");
         
-        this.testarSalvarObjeto();
-        
-        Usuario pessoa = null;
+        Usuario pessoa = new Usuario("nome1", new Date(), "cpf1", new ArrayList(), "login1", "senha1");
         
         try {
-            pessoa = (Usuario) fileManager.readObject("pessoa_teste_salvamento.objeto");
+            fileManager.saveObject(pessoa, file_usuario.getPath());
+        } catch (IOException ex) {
+            Logger.getLogger(FileManagerTest.class.getName()).log(Level.SEVERE, null, ex);
+            fail("Nao deveria dar erro");
+        }
+        
+        pessoa = null;
+        
+        try {
+            pessoa = (Usuario) fileManager.readObject(file_usuario.getPath());
         } catch (IOException | ClassNotFoundException ex) {
             Logger.getLogger(FileManagerTest.class.getName()).log(Level.SEVERE, null, ex);
             fail("Nao deveria dar erro");
@@ -106,7 +113,7 @@ public class FileManagerTest {
         
         Object map=null;
         try {
-            map = fileManager.readObject("map_teste_salvamento.objeto");
+            map = fileManager.readObject(file_map.getPath());
         } catch (IOException | ClassNotFoundException ex) {
             Logger.getLogger(FileManagerTest.class.getName()).log(Level.SEVERE, null, ex);
             fail("Nao deveria dar erro");
