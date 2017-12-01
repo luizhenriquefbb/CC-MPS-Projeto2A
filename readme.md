@@ -17,5 +17,4 @@ A aplicação pouco importa, o que realmente interessa é a correta implementaç
 
 
 ## Documentação
-	- [Aproximação do diagrama de classes](https://drive.google.com/file/d/1NZcMT1Q_rGt9TIhtXHmOYho2OX6QkZi5/view?usp=sharing)
-	TODO: Colocar documentação quando terminda
+[Aproximação do diagrama de classes](https://drive.google.com/file/d/1NZcMT1Q_rGt9TIhtXHmOYho2OX6QkZi5/view?usp=sharing)
