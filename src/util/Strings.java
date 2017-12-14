@@ -43,6 +43,12 @@ public class Strings {
     public static final String DIRETORIO_RELATORIO_CLIENTES             = DIRETORIO_RAIZ+"relatorio_usuarios.txt";
     public static final String DIRETORIO_RELATORIO_PRODUTOS             = DIRETORIO_RAIZ+"relatorio_produtos.txt";
     public static final String DIRETORIO_PRODUTOS_CADASTRADOS           = DIRETORIO_RAIZ+"produtos.object";
+    
+    
+    // protocolos de comunicacao
+    public static final String IP_SERVIDOR = "localhost";
+    public static final int PORTA_PRINCIPAL = 4444;
+    public static final int PORTA_CLIENTE = 4445;
 
 
 }

@@ -42,7 +42,9 @@ public class FachadaGerente extends Fachada{
             throw new HashMapInvalidoException("acao nao definida");
         }
         
-        this.acao = new AcaoValidada((Acao) this.listaAcoes.get(entradaAcao));
+        this.acao = new AcaoValidada((Acao) this.listaAcoes.get(entradaAcao),
+        (String) this.entrada.get(Strings.KEY_USUARIO_LOGIN),
+        (String) this.entrada.get(Strings.KEY_USUARIO_SENHA));
         
         if(this.acao == null){
             throw new HashMapInvalidoException("comando não encontrado");

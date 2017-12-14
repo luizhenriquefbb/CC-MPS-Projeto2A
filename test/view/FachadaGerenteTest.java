@@ -6,7 +6,7 @@
 package view;
 
 import business.Memento;
-import gui.Gerente;
+import guiCliente.Gerente;
 import infra.Produto;
 import java.util.Date;
 import java.util.HashMap;

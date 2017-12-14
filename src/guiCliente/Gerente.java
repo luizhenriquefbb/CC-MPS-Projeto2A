@@ -1,4 +1,4 @@
-package gui;
+package guiCliente;
 
 
 import business.EditarPerfil;

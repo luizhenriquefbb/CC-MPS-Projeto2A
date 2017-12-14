@@ -1,8 +1,7 @@
 package view;
 
-import gui.Gerente;
+import guiCliente.Gerente;
 import infra.Entidade;
-import javax.swing.JOptionPane;
 import util.exceptions.CredenciaisErradasException;
 import util.exceptions.HashMapInvalidoException;
 
@@ -13,9 +12,13 @@ import util.exceptions.HashMapInvalidoException;
 public class AcaoValidada implements Proxy{
     
     Acao acao;
+    private final String login;
+    private final String senha;
 
-    public AcaoValidada(Acao acao) {
+    public AcaoValidada(Acao acao, String login, String senha) {
         this.acao = acao;
+        this.login = login;
+        this.senha = senha;
     }
 
     
@@ -26,7 +29,7 @@ public class AcaoValidada implements Proxy{
             throw new HashMapInvalidoException("Acao nao informada");
         }
         
-        if(    !("admin".equalsIgnoreCase(Gerente.getLogin()) && "123".equals(Gerente.getSenha()))    ){
+        if(    !("admin".equalsIgnoreCase(this.login) && "123".equals(this.senha))    ){
             throw new CredenciaisErradasException("login ou senha inválido");
         }else{
             acao.agir();

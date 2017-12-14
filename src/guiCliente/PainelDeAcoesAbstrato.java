@@ -1,4 +1,4 @@
-package gui;
+package guiCliente;
 
 import java.util.Map;
 import javax.swing.JFrame;
