@@ -9,7 +9,6 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -23,7 +22,8 @@ import util.Strings;
 public class Gerente_novo extends javax.swing.JFrame implements Runnable{
 
     Fachada fachada;
-    Map<String, Object> entrada = new HashMap<>();
+    /**Hasmap que sera enviado para o servidor*/
+    Map<String, Object> mensagem = new HashMap<>();
     Memento memento;
     
     static String senha;
@@ -64,6 +64,8 @@ public class Gerente_novo extends javax.swing.JFrame implements Runnable{
     private void initComponents() {
 
         botaoRelatorioClientes = new javax.swing.JToggleButton();
+        botaoRelatorioProdutos = new javax.swing.JToggleButton();
+        botaoBuscarProduto = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -75,57 +77,102 @@ public class Gerente_novo extends javax.swing.JFrame implements Runnable{
             }
         });
 
+        botaoRelatorioProdutos.setText("Relatorio de Produtos");
+        botaoRelatorioProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoRelatorioProdutosActionPerformed(evt);
+            }
+        });
+
+        botaoBuscarProduto.setText("BuscarUmProduto");
+        botaoBuscarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoBuscarProdutoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(botaoRelatorioClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(botaoBuscarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoRelatorioProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoRelatorioClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(botaoBuscarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addComponent(botaoRelatorioProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
                 .addComponent(botaoRelatorioClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(286, Short.MAX_VALUE))
+                .addGap(91, 91, 91))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoRelatorioClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRelatorioClientesActionPerformed
-        this.entrada.put(Strings.ENTRADA_ACAO, Strings.ACAO_GERAR_RELATORIO_CLIENTES_ATIVOS);
-        this.entrada.put(Strings.KEY_USUARIO_LOGIN, login);
-        this.entrada.put(Strings.KEY_USUARIO_SENHA, senha);
+        this.mensagem.put(Strings.ENTRADA_ACAO, Strings.ACAO_GERAR_RELATORIO_CLIENTES_ATIVOS);
+        this.mensagem.put(Strings.KEY_USUARIO_LOGIN, login);
+        this.mensagem.put(Strings.KEY_USUARIO_SENHA, senha);
      
-        // antes: sem modelo cilente-servidor
-//        this.fachada = new FachadaGerente(entrada);
-//        
-//        try {
-//            this.fachada.agir();
-//            JOptionPane.showMessageDialog(null, "relatorio salvo em "+Strings.DIRETORIO_RELATORIO_CLIENTES);
-//        } catch (HashMapInvalidoException | CredenciaisErradasException ex) {
-//            Logger.getLogger(Gerente_novo.class.getName()).log(Level.SEVERE, null, ex);
-//            JOptionPane.showMessageDialog(null, ex.getLocalizedMessage());
-//        }
+        this.enviarMsg();
+        
+    }//GEN-LAST:event_botaoRelatorioClientesActionPerformed
 
+    private void botaoRelatorioProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRelatorioProdutosActionPerformed
+        this.mensagem.put(Strings.ENTRADA_ACAO, Strings.ACAO_GERAR_RELATORIO_PRODUTOS);
+        this.mensagem.put(Strings.KEY_USUARIO_LOGIN, login);
+        this.mensagem.put(Strings.KEY_USUARIO_SENHA, senha);
+        
+
+        this.enviarMsg();
+
+    }//GEN-LAST:event_botaoRelatorioProdutosActionPerformed
+    
+    private void botaoBuscarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoBuscarProdutoActionPerformed
+        this.mensagem.put(Strings.ENTRADA_ACAO, Strings.ACAO_BUSCAR_PRODUTO);
+        this.mensagem.put(Strings.KEY_USUARIO_LOGIN, login);
+        this.mensagem.put(Strings.KEY_USUARIO_SENHA, senha);
+
+        // insrir o codigo de barras a ser procurado
+        String codigoProdutoBuscado = JOptionPane.showInputDialog(null, "Qual o codigo do produto buscado?");
+        if (codigoProdutoBuscado == null){
+            JOptionPane.showMessageDialog(null, "codigo invalido");
+            return; // nao pesquisar
+        }
+        this.mensagem.put(Strings.KEY_PRODUTO_CODIGO, codigoProdutoBuscado);
+        
+        
+       this.enviarMsg();
+       
+    }//GEN-LAST:event_botaoBuscarProdutoActionPerformed
+
+    /**
+     * Envia map para o servidor
+     */
+    private void enviarMsg(){
         // modelo cliente-servidor
         //enviar hash para o servidor
         try {
-            out.writeObject(this.entrada);
+            out.writeObject(this.mensagem);
+            System.out.println("mensagem enviada "+ this.mensagem);
             out.flush();
         } catch (IOException ex) {
             //TODO
             System.err.println("Erro não tratado");
             Logger.getLogger(Gerente_novo.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-    }//GEN-LAST:event_botaoRelatorioClientesActionPerformed
-
-    static boolean estrategia = true;
+    }
+    
+    
     public static void main(String args[]){
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -175,7 +222,9 @@ public class Gerente_novo extends javax.swing.JFrame implements Runnable{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton botaoBuscarProduto;
     private javax.swing.JToggleButton botaoRelatorioClientes;
+    private javax.swing.JToggleButton botaoRelatorioProdutos;
     // End of variables declaration//GEN-END:variables
 
     public static String getSenha() {

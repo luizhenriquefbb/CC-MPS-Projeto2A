@@ -25,6 +25,8 @@ public class BuscarProduto extends AcaoComProduto{
         
         //buscarProduto
         setEntidade(produtos.get(codigoProdutoBuscado));
+        
+        System.out.println("produto achado: "+getEntidade());
        
     }
     

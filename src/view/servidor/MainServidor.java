@@ -9,7 +9,7 @@ import static util.Strings.PORTA_PRINCIPAL;
  * Servidor TCP que recebe multiplos clientes <br>
  * @author lhfba
  */
-public class ServidorMultiplos {
+public class MainServidor {
     public static void main(String[] args) {
         try {
             System.out.println("Incializando o servidor...");
